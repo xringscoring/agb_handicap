@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'agb_handicap'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2017-02-25'
   s.summary     = 'AGB Handicap Calculator'
   s.description = "Calculate Archery GB/GNAS handicaps for standard target rounds. Based on David Lane's original algorithm"
