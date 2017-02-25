@@ -16,10 +16,7 @@ module AgbHandicap
     # distances = [ {'range_in_meters' => 18, 'total_shots' => 60, 'target_diameter_cm' => 40, 'scoring_scheme' => 'METRIC'} ]
     def calculate(score, distances, rounded = true)
       result = agbhandicap(score, distances)
-      if rounded
-        result = result.ceil.to_i
-      end
-      result
+      rounded ? result.ceil.to_i : result
     end
 
     private
@@ -63,57 +60,57 @@ module AgbHandicap
       scoring = distance['scoring_scheme']
 
       score = 0
-      sr = score_range(h, range)
+      sr = score_range(h.to_f, range).to_f
 
       case scoring
       when 'METRIC'
         score = 10
         (1..10).each do | n |
-          score = score - solution( (n.to_f * diameter / 20.0 + 0.357), sr.to_f)
+          score = score - solution((n.to_f * diameter / 20.0 + 0.357), sr)
         end
       when 'IMPERIAL'
         score = 9
         (1..4).each do | n |
-          score = score - (2.0 * solution( (n.to_f * diameter / 10.0 + 0.357), sr.to_f ))
+          score = score - (2.0 * solution((n.to_f * diameter / 10.0 + 0.357), sr))
         end
-        score = score - solution( (diameter / 2 + 0.357), sr.to_f )
+        score = score - solution((diameter / 2 + 0.357), sr)
       when 'ONE_TO_FIVE' # could be worcester or NFAA round etc
         score = 5
         (1..5).each do | n |
-          score = score - solution( (n.to_f * diameter / 10.0 + 0.357), sr.to_f )
+          score = score - solution((n.to_f * diameter / 10.0 + 0.357), sr)
         end
       when 'INNER_TEN'
         score = 10
-        score = score - solution( (diameter / 40 + 0.357), sr.to_f )
+        score = score - solution((diameter / 40 + 0.357), sr)
         (2..10).each do | n |
-          score  = score - solution( (n.to_f * diameter / 20 + 0.357), sr.to_f )
+          score  = score - solution((n.to_f * diameter / 20 + 0.357), sr)
         end
       when 'TRIPLE'
         score = 10
         (1..4).each do | n |
-          score = score - solution( (n.to_f * diameter / 20 + 0.357), sr.to_f )
+          score = score - solution((n.to_f * diameter / 20 + 0.357), sr)
         end
-        score = score - (6 * solution( (5 * diameter / 20 + 0.357), sr.to_f ))
+        score = score - (6 * solution((5 * diameter / 20 + 0.357), sr))
       when 'TRIPLE_INNER_TEN'
         score = 10
-        score = score - solution( (diameter / 40 + 0.357), sr.to_f )
+        score = score - solution((diameter / 40 + 0.357), sr)
         (2..4).each do | n |
-          score = score - solution( (n.to_f * diameter / 20 + 0.357), sr.to_f )
+          score = score - solution((n.to_f * diameter / 20 + 0.357), sr)
         end
-        score = score - (6 * solution( (5 * diameter / 20 + 0.357), sr.to_f ))
-      when 'SIX_ZONE' # WA 50M Compound
+        score = score - (6 * solution((5 * diameter / 20 + 0.357), sr))
+      when 'SIX_ZONE'
         score = 10
         (1..5).each do | n |
-          score = score - solution( (n.to_f * diameter / 20 + 0.357), sr.to_f )
+          score = score - solution((n.to_f * diameter / 20 + 0.357), sr)
         end
-        score = score - (5 * solution( (6 * diameter / 20 + 0.357), sr.to_f ))
+        score = score - (5 * solution((6 * diameter / 20 + 0.357), sr))
       end
 
-      (score.to_f * shots.to_f).to_f
+      (score.to_f * shots).to_f
     end
 
     def score_range(h, range)
-      100 * range * (1.036 ** (h.to_f + 12.9)) * 5e-4 * (1 + 1.429e-6 * (1.07 ** (h.to_f + 4.3)) * (range * range))
+      100 * range * (1.036 ** (h + 12.9)) * 5e-4 * (1 + 1.429e-6 * (1.07 ** (h + 4.3)) * (range * range))
     end
 
     def solution(operator, score_range)
