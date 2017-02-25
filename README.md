@@ -6,6 +6,12 @@ This gem encapsulates a module for calculating Archery GB/GNAS target handicap v
 
     require 'agb_handicap'
 
+    # Calculation requires an array of at least 1 distance, each describing
+    # 'range_in_meters' - note Imperial diatnces must be converted
+    # 'total_shots' - at this distance
+    # 'target_diameter_cm'
+    # 'scoring_scheme' - see AgbHandicap::SCORING_SCHEMES for definitions
+
     distances = [ {'range_in_meters' => 18, 'total_shots' => 60, 'target_diameter_cm' => 40, 'scoring_scheme' => 'METRIC'} ]
     score = 544
 
@@ -15,18 +21,19 @@ This gem encapsulates a module for calculating Archery GB/GNAS target handicap v
     # Non-rounded result
     nonrounded_handicap = AgbHandicap.calculate(score, distances, false)
 
-    # Get scoring scoring scheme constants
+    # Get scoring scoring scheme constants and definitions
     puts AgbHandicap::SCORING_SCHEMES
 
 ## Installation
-In your Gemfile:
+AgbHandicap can be used from the command line or as part of a Ruby framework. To install the gem from the terminal, run the following command:
 
-    gem "agb_handicap", :git => "git://github.com/eljetico/agb_handicap.git"
+    gem install agb_handicap
 
-Run bundler
+To use in Rails, or with a Gemfile, add this line:
 
-    bundle install
+    gem "agb_handicap"
+
 
 ## License
 
-A short snippet describing the license (MIT, Apache, etc.)
+AgbHandicap has been published under {MIT License}[https://github.com/pythonicrubyist/creek/blob/master/LICENSE.txt]
