@@ -85,7 +85,7 @@ class AgbHandicapTest < Minitest::Test
     assert_equal(5.2, result, "calc 2 ok")
   end
 
-  # Six zone metric scoring eg Compound 59m
+  # Six zone metric scoring eg Compound 50m
   def test_single_distance_six_zone_scoring
     distances = [ {'range_in_meters' => 50, 'total_shots' => 72, 'target_diameter_cm' => 80, 'scoring_scheme' => 'SIX_ZONE'} ]
 
