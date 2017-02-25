@@ -1,5 +1,15 @@
 module AgbHandicap
 
+  SCORING_SCHEMES = {
+    'METRIC' => 'Standard WA target face 10 -1',
+    'IMPERIAL' => 'Standard WA target face 9 - 1',
+    'INNER_TEN' => 'Standard WA target face 10-1 with x-ring counting as 10, eg compound scoring',
+    'TRIPLE' => 'Standard 3-spot 5-zone WA target face, eg WA18m round',
+    'TRIPLE_INNER_TEN' => 'Standard 3-spot 5-zone WA target face with x-ring counting as 10, eg compound WA18m round',
+    'ONE_TO_FIVE' => '5-zone scoring, eg Worcester, NFAA Indoor',
+    'SIX_ZONE' => '6-zone WA target face, eg compound 50m'
+  }
+  
   def self.agbhandicap(score, distances)
     rtrange = 32.0
     hc = 50.0

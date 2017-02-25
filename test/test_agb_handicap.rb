@@ -10,6 +10,10 @@ class AgbHandicapTest < Minitest::Test
 
   end
 
+  def test_scoring_scheme_constants
+    assert_equal 7, AgbHandicap::SCORING_SCHEMES.keys.length
+  end
+
   def test_single_distance_metric_scoring
     distances = [ {'range_in_meters' => 18, 'total_shots' => 60, 'target_diameter_cm' => 40, 'scoring_scheme' => 'METRIC'} ]
     score = 544
