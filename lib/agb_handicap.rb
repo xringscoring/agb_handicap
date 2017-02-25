@@ -9,7 +9,7 @@ module AgbHandicap
     'ONE_TO_FIVE' => '5-zone scoring, eg Worcester, NFAA Indoor',
     'SIX_ZONE' => '6-zone WA target face, eg compound 50m'
   }
-  
+
   def self.agbhandicap(score, distances)
     rtrange = 32.0
     hc = 50.0
@@ -59,10 +59,6 @@ module AgbHandicap
     scoring = distance['scoring_scheme']
 
     score = 0
-    # g = 0
-    # hts = 0
-
-    # sr = 100 * range * (1.036 ** (h.to_f + 12.9)) * 5e-4 * (1 + 1.429e-6 * (1.07 ** (h.to_f + 4.3)) * (range * range))
     sr = self.score_range(h, range)
 
     case scoring
@@ -71,8 +67,6 @@ module AgbHandicap
       (1..10).each do | n |
         score = score - self.solution( (n.to_f * diameter / 20.0 + 0.357), sr.to_f)
       end
-      # g = 1 - HandicapCalculator::solution(n, diameter, 20, 0.357, sr)
-      # hts = 1 - HandicapCalculator::solution(n, diameter, 2, 0.357, sr)
     when 'IMPERIAL'
       score = 9
       (1..4).each do | n |
@@ -111,7 +105,6 @@ module AgbHandicap
       score = score - (5 * self.solution( (6 * diameter / 20 + 0.357), sr.to_f ))
     end
 
-    # score.to_f * shots.to_f
     (score.to_f * shots.to_f).to_f
   end
 
