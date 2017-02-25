@@ -6,16 +6,13 @@ require 'agb_handicap'
 
 class AgbHandicapTest < Minitest::Test
 
-  def setup
-
-  end
-
   def test_scoring_scheme_constants
     assert_equal 7, AgbHandicap::SCORING_SCHEMES.keys.length
   end
 
   def test_single_distance_metric_scoring
     distances = [ {'range_in_meters' => 18, 'total_shots' => 60, 'target_diameter_cm' => 40, 'scoring_scheme' => 'METRIC'} ]
+
     score = 544
 
     # Non-rounded
@@ -45,6 +42,7 @@ class AgbHandicapTest < Minitest::Test
     # Rounded
     result = AgbHandicap.calculate(score, distances)
     assert_equal(26, result)
+
   end
 
   # Worcester
@@ -56,11 +54,11 @@ class AgbHandicapTest < Minitest::Test
     score = 291
 
     # Non-rounded
-    result = AgbHandicap.calculate(291, distances, false)
+    result = AgbHandicap.calculate(score, distances, false)
     assert_equal(22.5, result)
 
     # Rounded
-    result = AgbHandicap.calculate(291, distances)
+    result = AgbHandicap.calculate(score, distances)
     assert_equal(23, result)
 
   end

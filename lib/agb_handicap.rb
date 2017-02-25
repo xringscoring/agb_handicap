@@ -13,7 +13,7 @@ module AgbHandicap
   class << self
 
     # score = integer
-    # distances = array
+    # distances = [ {'range_in_meters' => 18, 'total_shots' => 60, 'target_diameter_cm' => 40, 'scoring_scheme' => 'METRIC'} ]
     def calculate(score, distances, rounded = true)
       result = agbhandicap(score, distances)
       if rounded
