@@ -8,8 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'eljetico@gmail.com'
   s.files       = ["lib/agb_handicap.rb"]
 
-  # s.add_runtime_dependency 'exiftool_vendored'
-
   s.add_development_dependency "minitest-reporters"
   s.add_development_dependency "guard"
   s.add_development_dependency "guard-minitest"
