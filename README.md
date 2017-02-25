@@ -38,4 +38,4 @@ To use in Rails, or with a Gemfile, add this line:
 
 ## License
 
-AgbHandicap has been published under {MIT License}[https://github.com/pythonicrubyist/creek/blob/master/LICENSE.txt]
+AgbHandicap has been published under [MIT License](https://github.com/pythonicrubyist/creek/blob/master/LICENSE.txt)
