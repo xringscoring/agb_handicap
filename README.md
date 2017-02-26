@@ -33,7 +33,7 @@ To use in Rails, or with a Gemfile, add this line:
     # Non-rounded result
     nonrounded_handicap = AgbHandicap.calculate(score, distances, false)
 
-    # Get scoring scoring scheme constants and definitions
+    # Get scoring scheme constants and definitions
     puts AgbHandicap::SCORING_SCHEMES
 
 ## License
