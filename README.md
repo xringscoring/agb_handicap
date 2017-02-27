@@ -1,6 +1,6 @@
 ## AGB Handicap Calculation
 
-This gem encapsulates a module for calculating Archery GB/GNAS target handicap values based on the original algorithm created by David Lane (see doc/Graduated-Handicap-Tables.pdf)
+This gem encapsulates a module for calculating Archery GB/GNAS target handicap values based on the original algorithm created by David Lane.
 
 No provision is made for target round definitions: these must be expressed as an array of hashes describing a minimum of 1 distance as described below. This enables calculations to be performed for arbitrary rounds/distances.
 
@@ -38,4 +38,4 @@ To use in Rails, or with a Gemfile, add this line:
 
 ## License
 
-AgbHandicap has been published under [MIT License](https://github.com/pythonicrubyist/creek/blob/master/LICENSE.txt)
+AgbHandicap has been published under [MIT License](https://opensource.org/licenses/MIT)
