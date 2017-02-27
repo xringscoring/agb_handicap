@@ -12,8 +12,18 @@ module AgbHandicap
 
   class << self
 
-    # score = integer
-    # distances = [ {'range_in_meters' => 18, 'total_shots' => 60, 'target_diameter_cm' => 40, 'scoring_scheme' => 'METRIC'} ]
+    # Calculate AGB score handicap as per David Lane's original algorithm
+    #
+    # Example:
+    #   >> distances = [
+    #        {'range_in_meters' => 91.44, 'total_shots' => 72, 'target_diameter_cm' => 122, 'scoring_scheme' => 'IMPERIAL'},
+    #        {'range_in_meters' => 73.152, 'total_shots' => 48, 'target_diameter_cm' => 122, 'scoring_scheme' => 'IMPERIAL'},
+    #        {'range_in_meters' => 54.864, 'total_shots' => 24, 'target_diameter_cm' => 122, 'scoring_scheme' => 'IMPERIAL'}
+    #      ]
+    #   >> score = 1105
+    #
+    #   >> result = AgbHandicap.calculate(score, distances)
+    #
     def calculate(score, distances, rounded = true)
       result = agbhandicap(score, distances)
       rounded ? result.ceil.to_i : result
